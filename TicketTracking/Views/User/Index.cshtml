@@ -1,0 +1,37 @@
+﻿@model List<TicketTracking.Models.UserViewModel>
+
+@{
+    ViewData["Title"] = "Users";
+}
+<h3>@ViewData["Title"]</h3>
+<hr/>
+<form>
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr class="table-active">
+                <th>Id</th>
+                <th>User</th>
+                <th>User Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Username</td>
+                        <td>@user.Type</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+                                <a asp-controller="User" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
